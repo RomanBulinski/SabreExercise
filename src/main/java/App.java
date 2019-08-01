@@ -14,10 +14,30 @@ public class App {
 
         String cleanedInput = input.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
         String[] words = cleanedInput.split(" ");
+
+        TreeMap<String, List<String>> indexes = buildIndexes(cleanedInput);
+
+        infillIndexes(words, indexes);
+
+        String result = indexes.keySet().stream()
+                .map(m -> m + ": " + indexes.get(m).toString()
+                        .replaceAll("\\[", "")
+                        .replaceAll("]", "") + "\n")
+                .collect(Collectors.joining());
+
+        return result.substring(0, result.length() - 1);
+    }
+
+
+    private TreeMap<String, List<String>> buildIndexes(String cleanedInput) {
         TreeMap<String, List<String>> indexes = new TreeMap<>();
         Set<String> lettersSet = new HashSet<>(Arrays.asList(cleanedInput.replaceAll(" ", "").split("")));
         lettersSet.forEach(n -> indexes.put(n, new ArrayList<String>()));
+        return indexes;
+    }
 
+
+    private void infillIndexes(String[] words, TreeMap<String, List<String>> indexes) {
         for (String word : words) {
             String[] letters = word.split("");
             for (String s : letters) {
@@ -29,14 +49,6 @@ public class App {
                 indexes.put(s, tempWords);
             }
         }
-
-        String result = indexes.keySet().stream()
-                .map(m -> m + ": " + indexes.get(m).toString()
-                        .replaceAll("\\[", "")
-                        .replaceAll("]", "") + "\n")
-                .collect(Collectors.joining());
-
-        return result.substring(0, result.length() - 1);
     }
 
 
