@@ -4,7 +4,13 @@ import java.util.stream.Collectors;
 public class App {
 
     public String indexing(String input) {
-        
+
+        if (input == null) {
+            return "Wrong input!!!";
+        }
+        if (input.length() == 0) {
+            return "Empty input!!!";
+        }
 
         String cleanedInput = input.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
         String[] words = cleanedInput.split(" ");
