@@ -4,34 +4,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestApp {
 
+    App app = new App();
 
     @Test
     public void isAlertFromNullInput() {
-        App app = new App();
         assertEquals("Wrong input!!!", app.indexing(null));
     }
 
     @Test
     public void isAlertFromEmptyInput() {
-        App app = new App();
         assertEquals("Empty input!!!", app.indexing(""));
     }
 
     @Test
     public void isOneIndexFromOneLetterWord() {
-        App app = new App();
         assertEquals("a: aaa", app.indexing("aaa"));
     }
 
     @Test
     public void isNoletterSignAreRemoving() {
-        App app = new App();
         assertEquals("a: aaa", app.indexing("aaa,:\\.-"));
     }
 
     @Test
     public void isLetterCaseAreIgnored() {
-        App app = new App();
         assertEquals("a: aaaa", app.indexing("AAAA"));
     }
 
@@ -40,7 +36,6 @@ public class TestApp {
         String result = "a: abc\n" +
                 "b: abc\n" +
                 "c: abc";
-        App app = new App();
         assertEquals(result, app.indexing("abc"));
     }
 
@@ -48,7 +43,6 @@ public class TestApp {
     public void isTwoIndexFromTwoLetterOneWord() {
         String result = "a: ab\n" +
                 "b: ab";
-        App app = new App();
         assertEquals(result, app.indexing("ab"));
     }
 
@@ -56,7 +50,7 @@ public class TestApp {
     public void isTwoIndexFromTwoLetterTwoWords() {
         String result = "a: ab\n" +
                 "b: ab";
-        App app = new App();
+
         assertEquals(result, app.indexing("ab ab"));
     }
 
@@ -78,7 +72,6 @@ public class TestApp {
                         "v: javie\n" +
                         "w: w";
 
-        App app = new App();
         assertEquals(result, app.indexing(input));
     }
 
