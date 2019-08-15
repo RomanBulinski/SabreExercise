@@ -23,14 +23,12 @@ public class App {
         return result.substring(0, result.length() - 1);
     }
 
-
     private TreeMap<String, List<String>> buildIndexes(String cleanedInput) {
         TreeMap<String, List<String>> indexes = new TreeMap<>();
         Set<String> lettersSet = new HashSet<>(Arrays.asList(cleanedInput.replaceAll(" ", "").split("")));
         lettersSet.forEach(n -> indexes.put(n, new ArrayList<String>()));
         return indexes;
     }
-
 
     private void infillIndexes(String[] words, TreeMap<String, List<String>> indexes) {
         for (String word : words) {
